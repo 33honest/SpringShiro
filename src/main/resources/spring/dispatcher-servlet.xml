@@ -22,6 +22,12 @@
 		<property name="viewResolvers">
 			<list>
 				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+					<property name="prefix" value="" />
+					<property name="suffix" value=".html" />
+
+				</bean>
+				<!--
 				<bean id="viewResolver"
 					class="cc.project.lnj.controller.frame.VelocityMultipleLayoutViewResolver">
 					<property name="cache" value="true" />
@@ -32,19 +38,16 @@
 					<property name="exposeSpringMacroHelpers" value="true" />
 					<property name="mappings">
 						<map>
-							<!-- 个性化布局在此添加 -->
 							<entry key="login*" value="common/layout/auth-layout.vm" />
 							<entry key="register*" value="common/layout/auth-layout.vm" />
-							<!-- list布局 -->
 							<entry key="main/trade/*" value="common/layout/list-layout.vm" />
-							<!-- 登录页布局 -->
 							<entry key="main/user/*" value="common/layout/user-layout.vm" />
-							<!-- 默认布局 -->
 							<entry key="main/*" value="common/layout/default-layout.vm" />
 							<entry key="common/*" value="common/layout/default-layout.vm" />
 						</map>
 					</property>
 				</bean>
+				-->
 			</list>
 		</property>
 	</bean>

@@ -1,13 +1,12 @@
 package cc.project.lnj.controller.frame;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.netfinworks.common.lang.StringUtil;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.servlet.view.velocity.VelocityLayoutView;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
-import com.netfinworks.common.lang.StringUtil;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * velocity布局处理

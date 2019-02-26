@@ -16,7 +16,7 @@
         <logback.version>1.0.13</logback.version>
         <logback.extensions.version>0.1.1</logback.extensions.version>
         <!-- spring版本号 -->
-        <spring.version>4.0.2.RELEASE</spring.version>
+        <spring.version>4.3.21.RELEASE</spring.version>
         <!-- mybatis版本号 -->
         <mybatis.version>3.2.6</mybatis.version>
         <!-- log4j日志文件管理包版本 -->
@@ -26,6 +26,7 @@
         <velocity.tools.version>2.0</velocity.tools.version>
         <shiro.version>1.2.3</shiro.version>
         <guava.version>18.0</guava.version>
+        <freemarker.verion>2.3.23</freemarker.verion>
     </properties>
 
     <dependencies>
@@ -165,15 +166,11 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>${velocity.version}</version>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.verion}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-tools</artifactId>
-            <version>${velocity.tools.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>

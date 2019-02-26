@@ -1,0 +1,14 @@
+#set($page_title = '操作错误')
+<div class="wrap">
+    <div class="busy_box">
+        <span class="busy_icobg"></span>
+        <h3 class="h3">对不起，系统繁忙，请稍候再试！</h3>
+        <p class="p">当前访问的人数较多，请稍候再试，或者<a href="#springUrl('/my/home.htm')">返回钱包首页</a></p>
+    </div>
+    <!--div class="busy_box">
+        <h3 class="h3">错误信息</h3>
+
+        <p class="p">$!response.message</p>
+        <p class="p">$!error</p>
+    </div-->
+</div>

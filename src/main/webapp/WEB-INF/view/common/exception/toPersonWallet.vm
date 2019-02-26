@@ -1,0 +1,9 @@
+#set($page_title = '非企业用户登录')
+<div class="wrap">
+    <div class="busy_box">
+        <span class="busy_icobg"></span>
+        <h3 class="h3">对不起，您非企业用户！</h3>
+        <p class="p"><a href="/my/home.htm">进入个人钱包</a></p>
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+<!--已登录头部-->
+#parse("/common/control/ie6.vm")
+<div class="header version_company">
+	<div class="top_nav">
+    	<div class="wrap">
+    	<!--<span class="fc_c" id="gg">公告：企业钱包已于2016-1-14成功改版，祝您使用愉快！</span>-->
+        <span class="fc_c fr">
+        	#if($response.data.member.memberName)
+       			 <i class="fc_6">你好，$!response.data.member.memberName</i> <a href="$!response.logoutUrl" class="a">退出</a>
+        	#end
+        |<a href="#springUrl('/my/home.htm')" class="a">我的钱包</a>
+        |<a href="http://help.qijiapay.com" class="a" target="view_windowbz">帮助中心</a></span>
+        </div>
+    </div>
+    <div class="logo_nav">
+        <h1 class="logo"><a href="#springUrl('/my/home.htm')"><img src="${WEB_RESOURCE.staticAddress}enterpriseWallet/image/logo_online_qy.png"></a></h1>
+    	
+    </div>
+</div>
+<script>
+$(function(){
+	$(".nav_li").hover(
+		function(){$(this).find(".sl-shadow").show();$(this).find(".angle").show();},
+		function(){$(this).find(".sl-shadow").hide();$(this).find(".angle").hide();}
+	);
+})
+</script>

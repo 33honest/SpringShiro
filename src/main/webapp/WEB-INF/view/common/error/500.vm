@@ -1,0 +1,21 @@
+#set($page_title = '齐家钱包--操作错误')
+<div class="wrap">
+        <div class="p404">
+        	<img src="${WEB_RESOURCE.staticAddress}wallet/image/500.jpg">
+            <p class="txt">对不起，网页暂时无法访问，请稍后再试！</p>
+            <p class="timeout">将在 <span id="count" class="fc_r_red">15</span> 秒后自动转入 <a href="#springUrl('/my/home.htm')">首页</a></p>
+        </div>
+</div>
+<script>
+$("#count").countDown({
+	count:15,
+	text:"",
+	endText:"",
+	isDisabled:false,
+	endFun:function(){
+		window.location="#springUrl('/my/home.htm')";//修改跳转地址
+	}
+});
+
+
+</script>

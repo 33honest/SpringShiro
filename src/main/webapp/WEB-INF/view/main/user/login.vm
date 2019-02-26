@@ -1,0 +1,20 @@
+<table>
+	<tr>
+	<td>账号：</td>
+	<td><input type="text" name="username" /></td>
+	</tr>
+	<tr>
+	<td>密码：</td>
+	<td><input type="password" name="pwd" /></td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+	<td><input type="submit" name="sub" value=" 登录 " /></td>
+	</tr>
+</table>
+<p>
+请求ID:${openId}
+</p>
+<p>
+当前时间：#showTime(${currentTime})
+</p>

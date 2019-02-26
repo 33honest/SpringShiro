@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="foot_in" id="footIn">
+        <div class="foot_con">
+            <p><a href="http://help.qijiapay.com/html/2014/help_0117/29.html" target="view_windowqb">关于齐家钱包</a>
+            | <a href="http://help.qijiapay.com/html/2014/help_0121/33.html" target="view_windowlx">联系我们</a>
+            | <a href="http://help.qijiapay.com/html/2014/help_0120/31.html" target="view_windowdt">网站地图</a>
+            | <a href="http://www.jia.com" target="view_windowwz">齐家网</a>
+                                  齐家钱包版权所有Copyright @ 2014 沪ICP备14000170号</p>
+        </div>
+    </div>
+ </div>
+<script type="text/javascript">
+	var TJJ={};
+	TJJ.UserCookieName = "JIA_user_name";
+	TJJ.AreaCookieName = "jia_city_id";
+	TJJ.t1 = (new Date).getTime();
+	TJJ.action = function(){};
+	TJJ.track= function(){};
+	$(function(){
+		var loadScript = function(src) {
+			var s = document.createElement("script");
+			s.type = "text/javascript";
+			s.async = true;
+			s.src = src;
+			document.getElementsByTagName("body")[0].appendChild(s);
+		};
+
+
+		loadScript('https://tjj.jia.com/tjj.min.js');
+	});
+</script>

@@ -1,0 +1,108 @@
+<link href="${WEB_RESOURCE.staticAddress}wallet/css/addin.css${WEB_RESOURCE.staticVersion}" rel="stylesheet" media="screen">
+<div class="user_infor_all user_infor_all_company">
+    <div class="wrap">
+         <div class="nav_top nav_top_company">
+            <div class="photo_box">
+              #if($response.data.member.faceImageUrl && $response.data.member.faceImageUrl != "null")
+	         	 	<img width="76" height="76" src="${WEB_RESOURCE.plateImageUrl}/$!response.data.member.faceImageUrl">
+	          #else
+	          		<img width="76" height="76" src="${WEB_RESOURCE.staticAddress}enterpriseWallet/image/user_image.png"> 	
+        	  #end
+            </div>
+            <div class="edit_box">
+                <h2>欢迎您，$!{response.data.member.memberName} &nbsp;&nbsp;&nbsp;<a class="a_nav" href="#springUrl('/my/accountManage.htm')">帐号管理</a></h2>
+                <ul class="clearfix">
+                <li>上次登录时间为：$!response.data.member.lastLoginTime  </li>
+                </ul>
+            </div>
+         </div>
+    </div>
+</div>
+<div class="zhanghu_infor">
+    <div class="wrap">
+    	<div class="money_can_use"> 
+			<em class="font_bold">账户余额</em> <span class="margin_console"><b class="red_b"><a class="wallet_money_a" href="#springUrl('/my/all-walletCheck.htm')">$!moneyUtil.getFormatNum(${response.data.member.account.balance})</a></b>元</span> 
+			<em class="font_bold">担保金额</em> <p style="margin-left:12px;">查看</p><img src="${WEB_RESOURCE.staticAddress}enterpriseWallet/image/loading.gif" style="vertical-align:middle;display:none;"><span><b class="black_b" id="foo"><a class="money_show_a" id="totalShouldSettleAmount" href="#springUrl('/my/all-settlementOrder.htm')" style="display:none;" ></a></b></span> 
+		</div>
+         <div class="money_maybe_use">
+              <i class="fr">
+                 	 可用余额 = 账户余额 - 预留退款金额 - 冻结金额 - 代收未缴款
+              </i>
+              <em class="font_bold">可用余额</em>  <span class="margin_console" style="margin-right:24px;"><b class="red_b">$!moneyUtil.getFormatNum(${response.data.member.account.accountAvailableBalance})</b> 元 </span>
+               <a href="#springUrl('/my/recharge.htm')" >充  值</a>
+               <a href="#springUrl('/my/withdraw.htm')" >提  现</a>
+               <a href="#springUrl('/my/transfer.htm')" >转  账</a>
+               <a href="#springUrl('/my/auth.htm')" >余额授权<i></i></a>
+         </div>
+         <div class="money_other clearfix">
+             <span class="fr" style="margin-right:90px;"> <em>代收未缴款</em> <b>$!moneyUtil.getFormatNum(${response.data.member.payAccount})</b> 元
+             	<!--添加-->
+             	 <strong class="wallet_com_icon">
+                  <span><b></b>
+                                                               商家通过手机数字现场和商家后台的现金代收操作后,未交款给齐家的货款。
+                  </span>
+              	 </strong>
+             	<!--添加-->
+             </span>
+             <span> <em>预留退款金额</em> <b>$!moneyUtil.getFormatNum(${response.data.member.reservedAmount})</b> 元 </span>
+             <span class="middle"> <em>冻结余额</em> <b>$!moneyUtil.getFormatNum(${response.data.member.account.frozenBalance})</b> 元 </span>
+         </div>
+	</div>
+<script type="text/javascript">
+$(function(){
+	  <!--添加-->
+	    $(".wallet_com_icon").hover(function(){
+			$(this).addClass("hover");
+			
+			},function(){
+				$(this).removeClass("hover");
+				
+		});
+	   <!--添加-->
+});
+
+$(".money_can_use p").click(function(){ 
+	$('.money_can_use p').hide().next("img").show();
+	jQuery.ajax({
+		type:"POST",
+		url:"/my/totalShouldSettleAmount.htm",
+		dataType: "json",
+		success: function(data){
+			if(data.success){
+			   jQuery('.money_can_use p').hide().next("img").hide();
+			   jQuery('#totalShouldSettleAmount').show();
+			   var value = formatNum(data.message);
+			   jQuery("#totalShouldSettleAmount").text(value);
+			   jQuery("#foo").after("元"); 
+			}
+		}
+	});
+});
+
+function formatNum(str){ 
+	var newStr = ""; 
+	var count = 0;
+	if(str.indexOf(".") == -1){
+		for(var i=str.length-1; i >= 0; i--){
+			if(count % 3 == 0 && count != 0){
+				newStr = str.charAt(i) + "," + newStr;
+			}else{
+				newStr = str.charAt(i) + newStr;
+			}
+			count++;
+		}
+		return newStr = newStr + ".00";
+	}else{
+		for (var i = str.indexOf(".") - 1; i >= 0; i--) {
+			if(count % 3 == 0 && count != 0){
+				newStr = str.charAt(i) + "," + newStr;
+			}else{
+				newStr = str.charAt(i) + newStr;
+			}
+			count++;
+		}
+		return newStr = newStr + str.substr(str.lastIndexOf("."));
+	}
+};
+
+</script>

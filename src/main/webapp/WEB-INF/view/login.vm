@@ -1,0 +1,12 @@
+<link href="${WEB_RESOURCE.staticAddress}enterpriseWallet/css/shop.css" rel="stylesheet">
+<style>
+.fast_login{width:420px;height:440px;background-color:#FFFFFF;border: 1px solid #ddd;position: fixed;
+_position:absolute;left:50%;margin-left:-210px;margin-top:-230px;top:50%;_top:0px;z-index: 1990;display:none;overflow:hidden;}
+
+</style>
+<div class="fast_login" style="display: block;">
+    <div class="login_hd"><span><a href="#" class="close">关闭</a></span>
+        <h4>快速登录</h4>
+    </div>
+    <div class="login_bd"><iframe src="https://passport.jia.com/cas/login?service=http%3A%2F%2Fmall.jia.com%2Fitem%2F37864%2F&amp;app_id=201&amp;frame=true&amp;isBuy=true" width="430px" height="430px" frameborder="no" border="0"></iframe></div>
+</div>

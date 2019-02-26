@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:annotation-config />
+	<mvc:default-servlet-handler />
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="cc.project.lnj.controller" />
+
+	<import resource="classpath:velocity/velocity-config-normal.xml" />
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean id="viewResolver"
+					class="cc.project.lnj.controller.frame.VelocityMultipleLayoutViewResolver">
+					<property name="cache" value="true" />
+					<property name="prefix" value="" />
+					<property name="suffix" value=".html" />
+					<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
+					<property name="contentType" value="text/html; charset=utf-8"></property>
+					<property name="exposeSpringMacroHelpers" value="true" />
+					<property name="mappings">
+						<map>
+							<!-- 个性化布局在此添加 -->
+							<entry key="login*" value="common/layout/auth-layout.vm" />
+							<entry key="register*" value="common/layout/auth-layout.vm" />
+							<!-- list布局 -->
+							<entry key="main/trade/*" value="common/layout/list-layout.vm" />
+							<!-- 登录页布局 -->
+							<entry key="main/user/*" value="common/layout/user-layout.vm" />
+							<!-- 默认布局 -->
+							<entry key="main/*" value="common/layout/default-layout.vm" />
+							<entry key="common/*" value="common/layout/default-layout.vm" />
+						</map>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 异常处理 -->
+	<bean id="exceptionResolver" class="cc.project.lnj.controller.frame.WebExceptionResolver">
+		<property name="defaultErrorView">
+			<value>/common/exception/error</value>
+		</property>
+		<property name="exceptionMappings">
+			<props>
+				<prop
+					key="org.springframework.web.multipart.MaxUploadSizeExceededException">/exception/uploadSizeExceeded</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 表单验证 -->
+	<!-- <bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory"> 
+		<property name="validationConfigLocations"> <list> <value>classpath:META-INF/validator/validator-rules.xml</value> 
+		<value>classpath:META-INF/validator/validator-member.xml</value> <value>classpath:META-INF/validator/validator-custom.xml</value> 
+		</list> </property> </bean> <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" 
+		/> <bean id="formValidate" class="cn.xzwww.site.web.common.util.FormValidatorHolder"> 
+		<constructor-arg ref="validatorFactory" /> </bean> <bean id="messageSource" 
+		class="org.springframework.context.support.ResourceBundleMessageSource"> 
+		<property name="basename" value="META-INF.validator.messages" /> </bean> -->
+
+</beans>

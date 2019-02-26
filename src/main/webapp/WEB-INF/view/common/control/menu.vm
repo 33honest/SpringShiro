@@ -1,0 +1,67 @@
+<form id="menuForm" name="menuForm" action="" method="post">
+</form>
+
+ #set($pageMapping = $response.data.pageReqMapping)
+ 
+ 	<div class="record_trade_box">
+              <div class="wrap">
+                  <ul class="clearfix" style="width:1000px;">
+                       <li #if($pageMapping =='/my/home.htm' || $pageMapping =='/my/all-walletCheck.htm') class="cur" #end >
+                           <i></i><a hidefocus="true" href="javascript:toMenuSubmit('/my/all-walletCheck.htm')">钱包对账单</a>
+                       </li #if($pageMapping =='/my/home.htm1' || $pageMapping =='/my/all-walletCheck.htm1') class="cur" #end>
+                       <!--
+                       <li >
+                            <i></i><a hidefocus="true" href="javascript:toMenuSubmit('/my/all-settlement.htm');">担保对账单</a>
+                       </li>
+                       -->
+                       <li class='has_sub_nav #if($pageMapping =="/my/all-recharge.htm" || $pageMapping =="/my/all-cach.htm" || $pageMapping =="/my/all-transfer.htm" || $pageMapping =="/my/all-auth.htm") cur #end '>
+                            <i></i><a hidefocus="true" href="javascript:;">账户操作记录</a>
+                            <dl #if($pageMapping =="/my/all-recharge.htm" || $pageMapping =="/my/all-cach.htm" || $pageMapping =="/my/all-transfer.htm" || $pageMapping =="/my/all-auth.htm") style="display:none;" #end >
+                                <dd>
+                                	<a href="javascript:toMenuSubmit('/my/all-recharge.htm')" hidefocus="true">充值记录</a>
+                                </dd>
+                                <dd>
+                                	<a href="javascript:toMenuSubmit('/my/all-cach.htm')" hidefocus="true">提现记录</a>
+                                </dd>
+                                <dd>
+                                	<a href="javascript:toMenuSubmit('/my/all-transfer.htm')" hidefocus="true">转账记录</a>
+                                </dd>
+								<dd>
+                                	<a href="javascript:toMenuSubmit('/my/all-auth.htm')" hidefocus="true">余额授权记录</a>
+                                </dd>
+                            </dl>
+                       </li>
+                       <li #if($pageMapping =='/my/all-trade.htm') class="cur" #end>
+                            <i></i><a href="javascript:toMenuSubmit('/my/all-trade.htm')" hidefocus="true">交易记录</a>
+                       </li>
+                       <li #if($pageMapping =='/my/all-settlementOrder.htm') class="cur" #end>
+                            <i></i><a href="javascript:toMenuSubmit('/my/all-settlementOrder.htm')" hidefocus="true">订单结算查询</a>
+                       </li>
+                       #if(${WEB_RESOURCE.memberQiJiaId}==$response.data.member.memberId)
+                       <li class='has_sub_nav #if($pageMapping =="/my/downloadBill.htm" || $pageMapping =="/my/all-orderSettle.htm" || $pageMapping =="/my/all-refundWater.htm") cur #end ' style="text-indent:36px;">
+                            <i></i><a hidefocus="true" href="javascript:;">对账单下载</a>
+                            <dl #if($pageMapping =="/my/downloadBill.htm" || $pageMapping =="/my/all-orderSettle.htm" || $pageMapping =="/my/all-refundWater.htm") style="display:none;" #end >
+                                <dd>
+                                	<a href="javascript:toMenuSubmit('/my/downloadBill.htm')" hidefocus="true">支付流水</a>
+                                </dd>
+                                <dd>
+                                	<a href="javascript:toMenuSubmit('/my/all-orderSettle.htm')" hidefocus="true">订单结算</a>
+                                </dd>
+                                <dd>
+                                	<a href="javascript:toMenuSubmit('/my/all-refundWater.htm')" hidefocus="true">退款流水</a>
+                                </dd>
+                            </dl>
+                       </li>
+                      #end
+                  </ul>
+              </div>
+          </div>
+
+<script language="javascript">
+	function  toMenuSubmit(adr){
+		 document.menuForm.action=adr;
+		 document.menuForm.submit(); 
+	  }
+</script>
+
+      

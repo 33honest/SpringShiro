@@ -22,7 +22,7 @@
 	</bean>
 
 	<!-- 扫描包 -->
-	<context:component-scan base-package="cc.project.lnj.service" />
+	<context:component-scan base-package="cc.project.lnj" />
 
 	<bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">

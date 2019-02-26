@@ -33,5 +33,12 @@
         <property name="prefix" value="/view/" />
         <property name="suffix" value=".html" />
     </bean>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="cc.project.lnj.Interceptor.CommonInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

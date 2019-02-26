@@ -26,7 +26,7 @@
         <velocity.tools.version>2.0</velocity.tools.version>
         <shiro.version>1.2.3</shiro.version>
         <guava.version>18.0</guava.version>
-        <freemarker.verion>2.3.23</freemarker.verion>
+        <freemarker.verion>2.3.28</freemarker.verion>
     </properties>
 
     <dependencies>
@@ -169,6 +169,12 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>${freemarker.verion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.8</version>
         </dependency>
 
         <dependency>

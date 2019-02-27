@@ -14,7 +14,7 @@ public class UserController {
     @RequestMapping("userList.html")
     public String userList(HttpServletRequest req, HttpServletResponse rep, ModelMap map) {
 
-        return "admin/user/userList";
+        return "admin/userList";
     }
 
 }

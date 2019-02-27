@@ -21,12 +21,14 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping("RoleList.html")
+    @RequestMapping("roleList.html")
     public String userList(HttpServletRequest req, HttpServletResponse rep, ModelMap map) {
 
 
+        List<Object> list = roleService.getList();
+        map.put("list", list);
 
-        return "admin/user/roleList";
+        return "admin/roleList";
     }
 
     @ResponseBody

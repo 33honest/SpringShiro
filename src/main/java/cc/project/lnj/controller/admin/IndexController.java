@@ -14,6 +14,8 @@ public class IndexController {
     @RequestMapping("index.html")
     public String userList(HttpServletRequest req, HttpServletResponse rep, ModelMap map) {
 
+        map.put("userName", "时光已逝");
+
         return "admin/index";
     }
 

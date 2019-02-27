@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cc.project.lnj.mapper.sysUserRoleMapper" >
-  <resultMap id="BaseResultMap" type="cc.project.lnj.domain.sysUserRole" >
+<mapper namespace="cc.project.lnj.mapper.SysUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="cc.project.lnj.domain.SysUserRole" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="sys_user_id" property="sysUserId" jdbcType="INTEGER" />
     <result column="sys_role_id" property="sysRoleId" jdbcType="VARCHAR" />
@@ -19,13 +19,13 @@
     delete from sys_user_role
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cc.project.lnj.domain.sysUserRole" >
+  <insert id="insert" parameterType="cc.project.lnj.domain.SysUserRole" >
     insert into sys_user_role (id, sys_user_id, sys_role_id
       )
     values (#{id,jdbcType=VARCHAR}, #{sysUserId,jdbcType=INTEGER}, #{sysRoleId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cc.project.lnj.domain.sysUserRole" >
+  <insert id="insertSelective" parameterType="cc.project.lnj.domain.SysUserRole" >
     insert into sys_user_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cc.project.lnj.domain.sysUserRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="cc.project.lnj.domain.SysUserRole" >
     update sys_user_role
     <set >
       <if test="sysUserId != null" >
@@ -62,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cc.project.lnj.domain.sysUserRole" >
+  <update id="updateByPrimaryKey" parameterType="cc.project.lnj.domain.SysUserRole" >
     update sys_user_role
     set sys_user_id = #{sysUserId,jdbcType=INTEGER},
       sys_role_id = #{sysRoleId,jdbcType=VARCHAR}

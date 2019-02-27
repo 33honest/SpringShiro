@@ -1,0 +1,54 @@
+<@com.head title="系统表单">
+</@com.head>
+<@com.body>
+<div class="layui-body">
+	<!-- 内容主体区域 -->
+	<div style="padding: 15px;">
+
+<!--start-->
+
+		<fieldset class="layui-elem-field site-demo-button">
+			<legend>角色管理</legend>
+			<div class="layui-btn-group">
+				<button class="layui-btn">增加</button>
+				<button class="layui-btn ">编辑</button>
+				<button class="layui-btn">删除</button>
+			</div>
+		</fieldset>
+
+		<table class="layui-table" lay-data="{url:'${basePath!}admin/roleListJson.html', id:'test3'}" lay-filter="test3">
+			<thead>
+			<tr>
+				<th lay-data="{type:'checkbox'}">ID</th>
+				<th lay-data="{field:'id', width:350, sort: true}">ID</th>
+				<th lay-data="{field:'name', width:250, sort: true, edit: 'text'}">角色名称</th>
+				<th lay-data="{field:'available', minWidth: 150}">状态</th>
+			</tr>
+			</thead>
+		</table>
+
+
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+            layui.use('table', function(){
+                var table = layui.table;
+
+                //监听单元格编辑
+                table.on('edit(test3)', function(obj){
+                    var value = obj.value //得到修改后的值
+                        ,data = obj.data //得到所在行所有键值
+                        ,field = obj.field; //得到字段
+                    layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+                });
+            });
+		</script>
+
+
+<!--end-->
+
+
+	</div>
+</div>
+
+
+</@com.body>

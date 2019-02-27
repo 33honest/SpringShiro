@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cc.project.lnj.mapper.sysUserMapper" >
-  <resultMap id="BaseResultMap" type="cc.project.lnj.domain.sysUser" >
+<mapper namespace="cc.project.lnj.mapper.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="cc.project.lnj.domain.SysUser" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="usercode" property="usercode" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     delete from sys_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cc.project.lnj.domain.sysUser" >
+  <insert id="insert" parameterType="cc.project.lnj.domain.SysUser" >
     insert into sys_user (id, usercode, username, 
       password, salt, locked
       )
@@ -30,7 +30,7 @@
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{locked,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cc.project.lnj.domain.sysUser" >
+  <insert id="insertSelective" parameterType="cc.project.lnj.domain.SysUser" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cc.project.lnj.domain.sysUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="cc.project.lnj.domain.SysUser" >
     update sys_user
     <set >
       <if test="usercode != null" >
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cc.project.lnj.domain.sysUser" >
+  <update id="updateByPrimaryKey" parameterType="cc.project.lnj.domain.SysUser" >
     update sys_user
     set usercode = #{usercode,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},

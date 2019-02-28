@@ -2,6 +2,8 @@ package cc.project.lnj.mapper;
 
 import cc.project.lnj.domain.SysPermission;
 
+import java.util.List;
+
 public interface SysPermissionMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface SysPermissionMapper {
     int updateByPrimaryKeySelective(SysPermission record);
 
     int updateByPrimaryKey(SysPermission record);
+
+    List<SysPermission> getPermissionByParentId(Long parentId);
 }

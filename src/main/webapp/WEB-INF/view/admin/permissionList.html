@@ -1,4 +1,4 @@
-<@com.head title="角色管理"></@com.head>
+<@com.head title="权限管理"></@com.head>
 
 <body data-type="generalComponents">
 
@@ -8,8 +8,7 @@
 
 <div class="tpl-page-container tpl-page-header-fixed">
 
-    <@com.navigate>
-</@com.navigate>
+<@com.navigate></@com.navigate>
 
 
 <div class="tpl-content-wrapper">
@@ -17,7 +16,7 @@
     <ol class="am-breadcrumb">
         <li><a href="${basePath}admin/index.html" class="am-icon-home">首页</a></li>
         <li><a href="${basePath}admin/userList.html">权限管理</a></li>
-        <li class="am-active">角色管理</li>
+        <li class="am-active">权限列表</li>
     </ol>
     <div class="tpl-portlet-components">
         <!--
@@ -42,34 +41,9 @@
                     <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
                             <button type="button" class="am-btn am-btn-default am-btn-success"><span
-                                    class="am-icon-plus"></span> 新增
-                            </button>
-                            <button type="button" class="am-btn am-btn-default am-btn-danger"><span
-                                    class="am-icon-trash-o"></span> 删除
+                                    class="am-icon-plus"></span> 新增顶级分类
                             </button>
                         </div>
-                    </div>
-                </div>
-                <div class="am-u-sm-12 am-u-md-3">
-                    <div class="am-form-group">
-                        <select data-am-selected="{btnSize: 'sm'}">
-                            <option value="option1">所有类别</option>
-                            <option value="option2">IT业界</option>
-                            <option value="option3">数码产品</option>
-                            <option value="option3">笔记本电脑</option>
-                            <option value="option3">平板电脑</option>
-                            <option value="option3">只能手机</option>
-                            <option value="option3">超极本</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="am-u-sm-12 am-u-md-3">
-                    <div class="am-input-group am-input-group-sm">
-                        <input type="text" class="am-form-field">
-                        <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search"
-                    type="button"></button>
-          </span>
                     </div>
                 </div>
             </div>
@@ -79,19 +53,23 @@
                         <table class="am-table am-table-striped am-table-hover table-main">
                             <thead>
                             <tr>
-                                <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
-                                <th class="table-title">角色名称</th>
+                                <th class="table-title">分类名称</th>
+                                <th class="table-title">权限名称</th>
+                                <th class="table-title">动作分类</th>
+                                <th class="table-title">地址路径</th>
                                 <th class="table-type">状态</th>
                                 <th class="table-set">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <#list list as item>
+                            <#list tree as root>
                             <tr>
-                                <td><input type="checkbox" name="ids" value="${item.id}" /></td>
-                                <td><a href="#">${item.name}</a></td>
+                                <td>${root.name}</td>
+                                <td>&nbsp</td>
+                                <td>${root.type}</td>
+                                <td>${root.url}</td>
                                 <td>
-                                <#if item.available == 1>
+                                <#if root.available == 1>
                                     正常
                                 <#else>
                                     禁用
@@ -101,7 +79,7 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                    class="am-icon-pencil-square-o"></span> 编辑
+                                                    class="am-icon-pencil-square-o"></span> <a href="${basePath}admin/permission/edit.html?id=${root.id}">编辑</a>
                                             </button>
                                             <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                                 <span class="am-icon-trash-o"></span> 删除
@@ -110,6 +88,38 @@
                                     </div>
                                 </td>
                             </tr>
+                            <#if root.list?if_exists>
+                                <#list root.list as sub>
+                                <tr>
+                                    <td>&nbsp</td>
+                                    <td>${sub.name}</td>
+                                    <td>${sub.type}</td>
+                                    <td>${sub.url}</td>
+                                    <td>
+                                        <#if sub.available == 1>
+                                        正常
+                                        <#else>
+                                        禁用
+                                        </#if>
+                                    </td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class="am-icon-pencil-square-o"></span> <a href="${basePath}admin/permission/edit.html?id=${sub.id}">编辑</a>
+                                                </button>
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                                        class="am-icon-plus"></span> 添加
+                                                </button>
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                                    <span class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </#list>
+                            </#if>
                             </#list>
 
                             </tbody>

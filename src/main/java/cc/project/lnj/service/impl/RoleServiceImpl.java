@@ -1,4 +1,4 @@
-package cc.project.lnj.service.cc.project.lnj.service.impl;
+package cc.project.lnj.service.impl;
 
 import cc.project.lnj.mapper.SysRoleMapper;
 import cc.project.lnj.service.RoleService;

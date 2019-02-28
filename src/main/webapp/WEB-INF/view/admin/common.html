@@ -18,12 +18,11 @@
     <link rel="stylesheet" href="${basePath}static/assets/css/admin.css">
     <link rel="stylesheet" href="${basePath}static/assets/css/app.css">
     <script src="${basePath}static/assets/js/echarts.min.js"></script>
+    <script src="${basePath}static/assets/js/jquery.min.js"></script>
 </head>
 </#macro>
 
 <#macro foot>
-
-<script src="${basePath}static/assets/js/jquery.min.js"></script>
 <script src="${basePath}static/assets/js/amazeui.min.js"></script>
 <script src="${basePath}static/assets/js/iscroll.js"></script>
 <script src="${basePath}static/assets/js/app.js"></script>
@@ -234,7 +233,7 @@
                             <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
                         </a>
 
-                        <a href="form-line.html">
+                        <a href="permissionEdit.html">
                             <i class="am-icon-angle-right"></i>
                             <span>线条表单</span>
                         </a>
@@ -250,18 +249,18 @@
                 </a>
                 <ul class="tpl-left-nav-sub-menu" style="display: block;">
                     <li>
-                        <a href="form-amazeui.html">
+                        <a href="${basePath}admin/userList.html">
                             <i class="am-icon-angle-right"></i>
                             <span>用户管理</span>
                             <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
                         </a>
 
-                        <a href="form-amazeui.html">
+                        <a href="${basePath}admin/roleList.html">
                             <i class="am-icon-angle-right"></i>
                             <span>角色分类</span>
                         </a>
 
-                        <a href="form-line.html">
+                        <a href="${basePath}admin/permission/index.html">
                             <i class="am-icon-angle-right"></i>
                             <span>权限管理</span>
                         </a>

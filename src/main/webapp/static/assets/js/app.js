@@ -20,12 +20,14 @@ $(function() {
         $('.tpl-switch').find('.tpl-switch-btn-view').on('click', function() {
             $(this).prev('.tpl-switch-btn').prop("checked", function() {
                     if ($(this).is(':checked')) {
+                        $(this).attr("checked",false);
                         return false
                     } else {
+                        $(this).attr("checked",true);
                         return true
                     }
                 })
-                // console.log('123123123')
+                console.log(event)
 
         })
     })

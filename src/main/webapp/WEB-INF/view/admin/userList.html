@@ -1,4 +1,4 @@
-<@com.head title="角色管理"></@com.head>
+<@com.head title="用户管理"></@com.head>
 
 <body data-type="generalComponents">
 
@@ -17,7 +17,7 @@
     <ol class="am-breadcrumb">
         <li><a href="${basePath}admin/index.html" class="am-icon-home">首页</a></li>
         <li><a href="${basePath}admin/userList.html">权限管理</a></li>
-        <li class="am-active">角色管理</li>
+        <li class="am-active">用户管理</li>
     </ol>
     <div class="tpl-portlet-components">
         <!--
@@ -80,7 +80,8 @@
                             <thead>
                             <tr>
                                 <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
-                                <th class="table-title">角色名称</th>
+                                <th class="table-title">用户名称</th>
+                                <th class="table-title">登录账号</th>
                                 <th class="table-type">状态</th>
                                 <th class="table-set">操作</th>
                             </tr>
@@ -89,9 +90,10 @@
                             <#list list as item>
                             <tr>
                                 <td><input type="checkbox" name="ids" value="${item.id}" /></td>
-                                <td><a href="#">${item.name}</a></td>
+                                <td><a href="#">${item.username}</a></td>
+                                <td><a href="#">${item.usercode}</a></td>
                                 <td>
-                                <#if item.available == 1>
+                                <#if item.locked == 0>
                                     正常
                                 <#else>
                                     禁用

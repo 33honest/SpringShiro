@@ -90,4 +90,19 @@ public class SysPermission {
     public void setAvailable(String available) {
         this.available = available == null ? null : available.trim();
     }
+
+    @Override
+    public String toString() {
+        return "SysPermission{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", percode='" + percode + '\'' +
+                ", parentid=" + parentid +
+                ", parentids='" + parentids + '\'' +
+                ", sortstring='" + sortstring + '\'' +
+                ", available='" + available + '\'' +
+                '}';
+    }
 }

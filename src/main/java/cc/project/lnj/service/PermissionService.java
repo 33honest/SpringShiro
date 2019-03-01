@@ -20,4 +20,8 @@ public interface PermissionService {
 
     public boolean updateByPrimaryKey(SysPermission sysPermission);
 
+    public SysPermission save(SysPermission sysPermission);
+
+    public int deletePermissionById(Long id);
+
 }

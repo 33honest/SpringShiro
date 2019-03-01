@@ -6,6 +6,8 @@ import cc.project.lnj.enums.PermissionEnum;
 import cc.project.lnj.mapper.SysPermissionMapper;
 import cc.project.lnj.service.PermissionService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import java.util.Map;
 
 @Service
 public class PermissionServiceImpl implements PermissionService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private SysPermissionMapper permissionMapper;
@@ -110,5 +114,29 @@ public class PermissionServiceImpl implements PermissionService {
         }
 
         return false;
+    }
+
+    @Override
+    public SysPermission save(SysPermission sysPermission) {
+        try {
+            permissionMapper.insertSelective(sysPermission);
+        } catch (Exception e) {
+            logger.error("添加权限出现异常，参数：{}，异常：{}", sysPermission, e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+        return sysPermission;
+    }
+
+    @Override
+    public int deletePermissionById(Long id) {
+
+        try {
+            return permissionMapper.deleteByPrimaryKey(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("删除指定权限【" + id + "】失败，原因：{}", e.getMessage());
+        }
+        return 0;
     }
 }

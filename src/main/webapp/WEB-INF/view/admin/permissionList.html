@@ -41,7 +41,7 @@
                     <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
                             <button type="button" class="am-btn am-btn-default am-btn-success"><span
-                                    class="am-icon-plus"></span> 新增顶级分类
+                                    class="am-icon-plus"></span> <a href="${basePath}admin/permission/add.html" class="btn_a_link">新增顶级分类</a>
                             </button>
                         </div>
                     </div>
@@ -82,11 +82,12 @@
                                                     class="am-icon-pencil-square-o"></span> <a href="${basePath}admin/permission/edit.html?id=${root.id}">编辑</a>
                                             </button>
                                             <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                    class="am-icon-plus"></span> 添加
+                                                    class="am-icon-plus"></span> <a href="${basePath}admin/permission/add.html?id=${root.id}">添加</a>
                                             </button>
                                             <#if root.list?if_exists>
+                                            <#else>
                                             <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                <span class="am-icon-trash-o"></span> 删除
+                                                <span class="am-icon-trash-o"></span> <a href="javascript:if(confirm('确认要删除吗？'))location='${basePath}admin/permission/delete.html?id=${root.id}'">删除</a>
                                             </button>
                                             </#if>
                                         </div>
@@ -113,8 +114,8 @@
                                                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                                         class="am-icon-pencil-square-o"></span> <a href="${basePath}admin/permission/edit.html?id=${sub.id}">编辑</a>
                                                 </button>
-                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                    <span class="am-icon-trash-o"></span> 删除
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" >
+                                                    <span class="am-icon-trash-o"></span> <a href="javascript:if(confirm('确认要删除吗？'))location='${basePath}admin/permission/delete.html?id=${sub.id}'">删除</a>
                                                 </button>
                                             </div>
                                         </div>

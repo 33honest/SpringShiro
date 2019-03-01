@@ -41,7 +41,7 @@
       #{parentids,jdbcType=VARCHAR}, #{sortstring,jdbcType=VARCHAR}, #{available,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cc.project.lnj.domain.SysPermission" >
+  <insert id="insertSelective" parameterType="cc.project.lnj.domain.SysPermission" useGeneratedKeys="true" keyProperty="id">
     insert into sys_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -34,11 +34,14 @@
 
                     <div class="am-g">
                         <div class="tpl-form-body tpl-form-line">
-                            <form name="editForm" class="am-form tpl-form-line-form">
+
+
+                            <form name="editForm" class="am-form tpl-form-line-form" action="${basePath}admin/permission/save.html" method="post">
+                                <input type="hidden" name="id" value="${permission.id}" />
                                 <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">权限名称 <span class="tpl-form-line-small-title">Name</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入权限名称，如：权限管理" value="${permission.name}" />
+                                        <input type="text" class="tpl-form-input" id="name" name="name" placeholder="请输入权限名称，如：权限管理" value="${permission.name}" />
                                         <small></small>
                                     </div>
                                 </div>
@@ -46,7 +49,7 @@
                                 <div class="am-form-group">
                                     <label for="user-phone" class="am-u-sm-3 am-form-label">类型 <span class="tpl-form-line-small-title">Type</span></label>
                                     <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}">
+                                        <select data-am-selected name="type">
                                           <#list permissionType as obj>
 
                                             <#if obj.code == permission.type>
@@ -63,22 +66,22 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">路径 <span class="tpl-form-line-small-title">Url</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" placeholder="输入路径，如：permission/add.html" value="${permission.url}" />
+                                        <input type="text" name="url" placeholder="输入路径，如：permission/add.html" value="${permission.url}" />
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">编码 <span class="tpl-form-line-small-title">Code</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" placeholder="输入编码，如：permission_add" value="${permission.percode}" />
+                                        <input type="text" name="percode" placeholder="输入编码，如：permission_add" value="${permission.percode}" />
                                     </div>
                                 </div>
 
                                 <#if tree?if_exists>
                                 <div class="am-form-group">
-                                    <label for="user-phone" class="am-u-sm-3 am-form-label">上一级 <span class="tpl-form-line-small-title">Parent</span></label>
+                                    <label class="am-u-sm-3 am-form-label">上一级 <span class="tpl-form-line-small-title">Parent</span></label>
                                     <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}">
+                                        <select data-am-selected name="parentid" id="parentId">
                                             <#list tree as obj>
                                             <#if obj.id == permission.parentid>
                                             <option value="${obj.id}" selected>${obj.name}</option>
@@ -92,13 +95,12 @@
                                 </div>
                                 </#if>
                                 <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">状态</label>
+                                    <label class="am-u-sm-3 am-form-label">状态</label>
                                     <div class="am-u-sm-9">
                                         <div class="tpl-switch">
-                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="available" />
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="available" id="available" ${checkboxStatus} />
                                             <div class="tpl-switch-btn-view">
-                                                <div>
-                                                </div>
+                                                <div></div>
                                             </div>
                                         </div>
 

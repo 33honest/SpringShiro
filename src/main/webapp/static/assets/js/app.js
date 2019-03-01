@@ -27,7 +27,7 @@ $(function() {
                         return true
                     }
                 })
-                console.log(event)
+                //console.log(event)
 
         })
     })

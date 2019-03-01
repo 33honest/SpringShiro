@@ -98,4 +98,17 @@ public class PermissionServiceImpl implements PermissionService {
 
         return permission;
     }
+
+    @Override
+    public boolean updateByPrimaryKey(SysPermission sysPermission) {
+
+        try {
+            permissionMapper.updateByPrimaryKeySelective(sysPermission);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

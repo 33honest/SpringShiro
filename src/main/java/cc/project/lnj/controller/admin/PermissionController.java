@@ -1,18 +1,22 @@
 package cc.project.lnj.controller.admin;
 
+import cc.project.lnj.domain.ApiOutPut;
 import cc.project.lnj.domain.PermissionData;
 import cc.project.lnj.domain.SysPermission;
-import cc.project.lnj.enums.PermissionEnum;
 import cc.project.lnj.service.PermissionService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RequestMapping("/admin")
@@ -35,6 +39,7 @@ public class PermissionController extends BaseController {
     public String edit(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 
         Boolean editParent = false;
+        String checkboxStatus = "";
 
         SysPermission permission = new SysPermission();
 
@@ -43,16 +48,19 @@ public class PermissionController extends BaseController {
                 long id = Long.parseLong(request.getParameter("id"));
                 permission = permissionService.selectByPrimaryKey(id);
 
-                if(null != permission) {
+                if (null != permission) {
 
-                    if(permission.getParentid() == 0) {
+                    if (permission.getParentid() == 0) {
                         editParent = true;
+                    }
+                    if(permission.getAvailable().equals("1")) {
+                        checkboxStatus = "checked=\"checked\"";
                     }
                 }
             }
 
 
-            if(!editParent) {
+            if (!editParent) {
                 List<SysPermission> tree = permissionService.getPermissionByParentId(0l);
                 model.put("tree", tree);
             }
@@ -63,6 +71,7 @@ public class PermissionController extends BaseController {
             e.printStackTrace();
         }
 
+        model.put("checkboxStatus", checkboxStatus);
         return "admin/permissionEdit";
     }
 
@@ -78,16 +87,16 @@ public class PermissionController extends BaseController {
                 long id = Long.parseLong(request.getParameter("id"));
                 permission = permissionService.selectByPrimaryKey(id);
 
-                if(null != permission) {
+                if (null != permission) {
 
-                    if(permission.getParentid() == 0) {
+                    if (permission.getParentid() == 0) {
                         editParent = true;
                     }
                 }
             }
 
 
-            if(!editParent) {
+            if (!editParent) {
                 List<SysPermission> tree = permissionService.getPermissionByParentId(0l);
                 model.put("tree", tree);
             }
@@ -99,6 +108,54 @@ public class PermissionController extends BaseController {
         }
 
         return "admin/permissionEdit";
+    }
+
+    @RequestMapping("permission/save.html")
+    public void save(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
+
+        ApiOutPut outPut = new ApiOutPut("0000");
+
+        try {
+            SysPermission sysPermission = new SysPermission();
+            sysPermission.setName(request.getParameter("name"));
+            sysPermission.setType(request.getParameter("type"));
+            if (StringUtils.isNotBlank(request.getParameter("id"))) {
+                sysPermission.setId(Long.valueOf(request.getParameter("id")));
+            }
+            if (StringUtils.isNotBlank(request.getParameter("parentid"))) {
+                sysPermission.setParentid(Long.valueOf(request.getParameter("parentid")));
+            }
+
+            sysPermission.setPercode(request.getParameter("percode"));
+            sysPermission.setUrl(request.getParameter("url"));
+
+
+            String available = request.getParameter("available");
+            if (StringUtils.isNotBlank(available) && available.equals("on")) {
+                sysPermission.setAvailable("1");
+            }else{
+                sysPermission.setAvailable("0");
+            }
+
+            boolean updateResult = permissionService.updateByPrimaryKey(sysPermission);
+            if (!updateResult) {
+                outPut.setStatusCode("5001");
+                outPut.setMsg("数据更新异常！");
+            }else{
+                outPut.setMsg("数据更新成功");
+            }
+            String basePath = (String) request.getAttribute("basePath");
+            outPut.setUrl(basePath + "admin/permission/edit.html?id=" + request.getParameter("id"));
+
+            request.setAttribute("outPut", outPut);
+
+            request.getRequestDispatcher("/admin/alert.html").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

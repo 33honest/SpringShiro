@@ -18,4 +18,6 @@ public interface PermissionService {
 
     public SysPermission selectByPrimaryKey(Long id);
 
+    public boolean updateByPrimaryKey(SysPermission sysPermission);
+
 }

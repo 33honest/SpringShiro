@@ -1,18 +1,18 @@
 package cc.project.lnj.domain;
 
 public class SysUserRole {
-    private String id;
+    private Integer id;
 
     private Integer sysUserId;
 
-    private String sysRoleId;
+    private Integer sysRoleId;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getSysUserId() {
@@ -23,11 +23,11 @@ public class SysUserRole {
         this.sysUserId = sysUserId;
     }
 
-    public String getSysRoleId() {
+    public Integer getSysRoleId() {
         return sysRoleId;
     }
 
-    public void setSysRoleId(String sysRoleId) {
-        this.sysRoleId = sysRoleId == null ? null : sysRoleId.trim();
+    public void setSysRoleId(Integer sysRoleId) {
+        this.sysRoleId = sysRoleId;
     }
 }

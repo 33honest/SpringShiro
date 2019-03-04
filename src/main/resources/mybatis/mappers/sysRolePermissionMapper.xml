@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cc.project.lnj.mapper.SysRolePermissionMapper" >
   <resultMap id="BaseResultMap" type="cc.project.lnj.domain.SysRolePermission" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="sys_role_id" property="sysRoleId" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sys_role_id" property="sysRoleId" jdbcType="INTEGER" />
     <result column="sys_permission_id" property="sysPermissionId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, sys_role_id, sys_permission_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from sys_role_permission
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_role_permission
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cc.project.lnj.domain.SysRolePermission" >
     insert into sys_role_permission (id, sys_role_id, sys_permission_id
       )
-    values (#{id,jdbcType=VARCHAR}, #{sysRoleId,jdbcType=VARCHAR}, #{sysPermissionId,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{sysRoleId,jdbcType=INTEGER}, #{sysPermissionId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cc.project.lnj.domain.SysRolePermission" >
@@ -40,10 +40,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="sysRoleId != null" >
-        #{sysRoleId,jdbcType=VARCHAR},
+        #{sysRoleId,jdbcType=INTEGER},
       </if>
       <if test="sysPermissionId != null" >
         #{sysPermissionId,jdbcType=VARCHAR},
@@ -54,18 +54,18 @@
     update sys_role_permission
     <set >
       <if test="sysRoleId != null" >
-        sys_role_id = #{sysRoleId,jdbcType=VARCHAR},
+        sys_role_id = #{sysRoleId,jdbcType=INTEGER},
       </if>
       <if test="sysPermissionId != null" >
         sys_permission_id = #{sysPermissionId,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cc.project.lnj.domain.SysRolePermission" >
     update sys_role_permission
-    set sys_role_id = #{sysRoleId,jdbcType=VARCHAR},
+    set sys_role_id = #{sysRoleId,jdbcType=INTEGER},
       sys_permission_id = #{sysPermissionId,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

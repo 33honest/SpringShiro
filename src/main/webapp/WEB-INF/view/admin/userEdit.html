@@ -1,0 +1,132 @@
+<@com.head title="权限管理"></@com.head>
+
+<body data-type="generalComponents">
+
+<@com.top></@com.top>
+
+
+
+
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+    <@com.navigate></@com.navigate>
+
+
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">权限管理</div>
+    <ol class="am-breadcrumb">
+        <li><a href="${basePath}admin/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="${basePath}admin/userList.html">权限管理</a></li>
+        <li class="am-active">用户管理</li>
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 用户管理
+            </div>
+
+
+        </div>
+
+        <div class="tpl-block">
+
+            <div class="am-g">
+                <div class="tpl-form-body tpl-form-line">
+
+
+                    <form name="editForm" class="am-form tpl-form-line-form" action="${basePath}admin/user/update.html" method="post">
+                        <input type="hidden" name="id" value="${user.id}" />
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">会员名称 <span class="tpl-form-line-small-title">Name</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" id="username" name="username" placeholder="请输入用户名称，如：李建国" value="${user.username}" />
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">会员账号 <span class="tpl-form-line-small-title">Name</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" id="usercode" name="usercode" placeholder="请输入会员账号，如：lijianguo" value="${user.usercode}" />
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">登录密码 <span class="tpl-form-line-small-title">Name</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" id="password" name="password" placeholder="保留空，密码不执行修改" value="" />
+                                <small></small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">会员角色 <span class="tpl-form-line-small-title">Type</span></label>
+                            <div class="am-u-sm-9">
+                                <select data-am-selected name="type">
+                                    <#list roleTree as obj>
+                                    <#if obj.id == user.roleId>
+                                    <option value="${obj.id}" selected="selected">${obj.name}</option>
+                                    <#else>
+                                    <option value="${obj.id}">${obj.name}</option>
+                                    </#if>
+
+                                    </#list>
+                            </select>
+                        </div>
+                </div>
+
+
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">状态</label>
+                    <div class="am-u-sm-9">
+                        <div class="tpl-switch">
+                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="locked" id="locked" ${lockChecked} />
+                            <div class="tpl-switch-btn-view">
+                                <div></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+            </div>
+        </div>
+        </form>
+
+
+
+    </div>
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+    $(function() {
+        $(".tpl-btn-bg-color-success").bind("click", function () {
+            $("form[name='editForm']").submit();
+        });
+    })
+</script>
+<@com.foot></@com.foot>

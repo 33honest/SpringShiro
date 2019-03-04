@@ -20,56 +20,16 @@
         <li class="am-active">用户管理</li>
     </ol>
     <div class="tpl-portlet-components">
-        <!--
-        <div class="portlet-title">
-            <div class="caption font-green bold">
-                <span class="am-icon-code"></span> 列表
-            </div>
-            <div class="tpl-portlet-input tpl-fz-ml">
-                <div class="portlet-input input-small input-inline">
-                    <div class="input-icon right">
-                        <i class="am-icon-search"></i>
-                        <input type="text" class="form-control form-control-solid" placeholder="搜索..."></div>
-                </div>
-            </div>
 
-
-        </div>
-        -->
         <div class="tpl-block">
             <div class="am-g">
                 <div class="am-u-sm-12 am-u-md-6">
                     <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
-                            <button type="button" class="am-btn am-btn-default am-btn-success"><span
-                                    class="am-icon-plus"></span> 新增
-                            </button>
-                            <button type="button" class="am-btn am-btn-default am-btn-danger"><span
-                                    class="am-icon-trash-o"></span> 删除
+                            <button type="button" onclick="javascript:window.location.href='${basePath}admin/user/add.html'" class="am-btn am-btn-default am-btn-success"><span
+                                    class="am-icon-plus"></span> 添加新用户
                             </button>
                         </div>
-                    </div>
-                </div>
-                <div class="am-u-sm-12 am-u-md-3">
-                    <div class="am-form-group">
-                        <select data-am-selected="{btnSize: 'sm'}">
-                            <option value="option1">所有类别</option>
-                            <option value="option2">IT业界</option>
-                            <option value="option3">数码产品</option>
-                            <option value="option3">笔记本电脑</option>
-                            <option value="option3">平板电脑</option>
-                            <option value="option3">只能手机</option>
-                            <option value="option3">超极本</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="am-u-sm-12 am-u-md-3">
-                    <div class="am-input-group am-input-group-sm">
-                        <input type="text" class="am-form-field">
-                        <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search"
-                    type="button"></button>
-          </span>
                     </div>
                 </div>
             </div>
@@ -79,9 +39,9 @@
                         <table class="am-table am-table-striped am-table-hover table-main">
                             <thead>
                             <tr>
-                                <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
                                 <th class="table-title">用户名称</th>
                                 <th class="table-title">登录账号</th>
+                                <th class="table-title">用户角色</th>
                                 <th class="table-type">状态</th>
                                 <th class="table-set">操作</th>
                             </tr>
@@ -89,9 +49,9 @@
                             <tbody>
                             <#list list as item>
                             <tr>
-                                <td><input type="checkbox" name="ids" value="${item.id}" /></td>
                                 <td><a href="#">${item.username}</a></td>
                                 <td><a href="#">${item.usercode}</a></td>
+                                <td><a href="#">${item.userRoleName}</a></td>
                                 <td>
                                 <#if item.locked == 0>
                                     正常
@@ -102,10 +62,10 @@
                                 <td>
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
+                                            <button type="button" onclick="javascript:window.location.href='${basePath}admin/user/edit.html?id=${item.id}'" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
                                                     class="am-icon-pencil-square-o"></span> 编辑
                                             </button>
-                                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                            <button type="button" onclick="javascript:if(confirm('确认要删除吗？'))location='${basePath}admin/user/delete.html?id=${item.id}'" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                                 <span class="am-icon-trash-o"></span> 删除
                                             </button>
                                         </div>

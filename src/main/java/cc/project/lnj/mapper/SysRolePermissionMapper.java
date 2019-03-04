@@ -3,13 +3,13 @@ package cc.project.lnj.mapper;
 import cc.project.lnj.domain.SysRolePermission;
 
 public interface SysRolePermissionMapper {
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(SysRolePermission record);
 
     int insertSelective(SysRolePermission record);
 
-    SysRolePermission selectByPrimaryKey(String id);
+    SysRolePermission selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(SysRolePermission record);
 

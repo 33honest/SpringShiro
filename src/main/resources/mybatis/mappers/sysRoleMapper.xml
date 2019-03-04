@@ -2,38 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cc.project.lnj.mapper.SysRoleMapper">
     <resultMap id="BaseResultMap" type="cc.project.lnj.domain.SysRole">
-        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="available" property="available" jdbcType="CHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, name, available
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
         from sys_role
-        where id = #{id,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </select>
-
-
-    <select id="getList" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_role
-    </select>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_role
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="cc.project.lnj.domain.SysRole">
     insert into sys_role (id, name, available
       )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{available,jdbcType=CHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{available,jdbcType=CHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="cc.project.lnj.domain.SysRole">
+    <insert id="insertSelective" parameterType="cc.project.lnj.domain.SysRole" useGeneratedKeys="true" keyProperty="id">
         insert into sys_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -48,7 +40,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
-                #{id,jdbcType=VARCHAR},
+                #{id,jdbcType=INTEGER},
             </if>
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
@@ -68,12 +60,19 @@
                 available = #{available,jdbcType=CHAR},
             </if>
         </set>
-        where id = #{id,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="cc.project.lnj.domain.SysRole">
     update sys_role
     set name = #{name,jdbcType=VARCHAR},
       available = #{available,jdbcType=CHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <select id="getList" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+    </select>
+
 </mapper>

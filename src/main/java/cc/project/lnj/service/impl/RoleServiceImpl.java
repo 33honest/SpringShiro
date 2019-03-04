@@ -1,7 +1,9 @@
 package cc.project.lnj.service.impl;
 
 import cc.project.lnj.domain.SysRole;
+import cc.project.lnj.domain.SysRolePermission;
 import cc.project.lnj.mapper.SysRoleMapper;
+import cc.project.lnj.mapper.SysRolePermissionMapper;
 import cc.project.lnj.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private SysRoleMapper roleMapper;
+
+    @Autowired
+    private SysRolePermissionMapper rolePermissionMapper;
 
     @Override
     public List<SysRole> getList() {
@@ -93,4 +98,31 @@ public class RoleServiceImpl implements RoleService {
 
         return role;
     }
+
+    @Override
+    public int saveRolePermission(int roleId, List<String> permissionId) {
+
+        try {
+            rolePermissionMapper.deleteByRoleId(roleId);
+            return rolePermissionMapper.saveRolePermission(roleId, permissionId);
+        } catch (Exception e) {
+            logger.error("角色配置权限出现异常，异常原因：{}", e.getMessage());
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
+    public List<SysRolePermission> getListByRoleId(int roleId) {
+        List<SysRolePermission> list = null;
+        try {
+            list = rolePermissionMapper.getListByRoleId(roleId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
 }

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -210,6 +211,13 @@ public class RoleController {
             }
             map.put("roleId", req.getParameter("id"));
             map.put("list", list);
+
+            List<SysRolePermission> rolePermissions = roleService.getListByRoleId(Integer.valueOf(req.getParameter("id")));
+            List<Integer> roleIds = new ArrayList<>();
+            for (SysRolePermission rolePermission : rolePermissions) {
+                roleIds.add(Integer.valueOf(rolePermission.getSysPermissionId()));
+            }
+            map.put("roleIds", roleIds);
         }else{
             ApiOutPut outPut = new ApiOutPut("5001");
             String basePath = (String) req.getAttribute("basePath");
@@ -236,6 +244,19 @@ public class RoleController {
 
             String roleId = req.getParameter("roleId");
             String[] permissionId = req.getParameterValues("permissionId");
+            if(permissionId.length > 0) {
+                try {
+                    int saveRst = roleService.saveRolePermission(Integer.valueOf(roleId), Arrays.asList(permissionId));
+                    outPut.setMsg("更新成功！");
+                } catch (NumberFormatException e) {
+                    outPut.setStatusCode("5003");
+                    outPut.setMsg("数据保存过程出现异常！");
+                    e.printStackTrace();
+                }
+            }else{
+                outPut.setStatusCode("5002");
+                outPut.setMsg("请为角色勾选权限！");
+            }
 
             System.out.println(permissionId);
         }else{

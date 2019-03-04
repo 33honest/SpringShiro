@@ -30,8 +30,6 @@
 
             <div class="am-g">
                 <div class="tpl-form-body tpl-form-line">
-
-
                     <form name="editForm" class="am-form tpl-form-line-form" action="${basePath}admin/role/permission_update.html" method="post">
                     <input type="hidden" name="roleId" value="${roleId}" />
                     <#list list as obj>
@@ -40,7 +38,13 @@
                                 <label class="am-u-sm-3 am-form-label">${obj.name}</label>
                                 <#list obj.list as subObj>
                                 <label class="am-checkbox-inline">
-                                    <input type="checkbox" name="permissionId" value="${subObj.id}"> ${subObj.name}
+                                    <#if roleIds?seq_contains(subObj.id) == true>
+                                    <input type="checkbox" name="permissionId" value="${subObj.id}" checked="checked"> ${subObj.name}
+                                    <#else>
+                                    <input type="checkbox" name="permissionId" value="${subObj.id}" > ${subObj.name}
+                                    </#if>
+
+
                                 </label>
                                 </#list>
                             </div>

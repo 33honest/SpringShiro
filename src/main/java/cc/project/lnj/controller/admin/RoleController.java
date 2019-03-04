@@ -1,11 +1,11 @@
 package cc.project.lnj.controller.admin;
 
-import cc.project.lnj.domain.ApiOutPut;
-import cc.project.lnj.domain.RecordResponse;
-import cc.project.lnj.domain.SysRole;
+import cc.project.lnj.domain.*;
+import cc.project.lnj.service.PermissionService;
 import cc.project.lnj.service.RoleService;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,9 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private PermissionService permissionService;
 
     @RequestMapping("role/index.html")
     public String userList(HttpServletRequest req, HttpServletResponse rep, ModelMap map) {
@@ -194,8 +198,64 @@ public class RoleController {
     @RequestMapping("role/permission.html")
     public String editPermission(HttpServletRequest req, HttpServletResponse rep, ModelMap map) {
 
+        if(StringUtils.isNotBlank(req.getParameter("id")) && StringUtils.isNumeric(req.getParameter("id"))) {
+            List<PermissionData> list = new ArrayList<>();
+            List<SysPermission> rootPermission = permissionService.getAvailablePermission(0L);
+            for (SysPermission p : rootPermission) {
+                PermissionData pData = new PermissionData();
+                List<SysPermission> subList = permissionService.getAvailablePermission(p.getId());
+                BeanUtils.copyProperties(p, pData);
+                pData.setList(subList);
+                list.add(pData);
+            }
+            map.put("roleId", req.getParameter("id"));
+            map.put("list", list);
+        }else{
+            ApiOutPut outPut = new ApiOutPut("5001");
+            String basePath = (String) req.getAttribute("basePath");
+            outPut.setUrl(basePath + "admin/role/index.html");
+            req.setAttribute("outPut", outPut);
+            try {
+                outPut.setMsg("参数传递有误！");
+                req.getRequestDispatcher("/admin/alert.html").forward(req, rep);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         return "admin/rolePermission";
+    }
+
+    @RequestMapping("role/permission_update.html")
+    public void permissionUpdate(HttpServletRequest req, HttpServletResponse rep) {
+
+        ApiOutPut outPut = new ApiOutPut("0000");
+        if(StringUtils.isNotBlank(req.getParameter("roleId")) && StringUtils.isNumeric(req.getParameter("roleId"))) {
+
+            String roleId = req.getParameter("roleId");
+            String[] permissionId = req.getParameterValues("permissionId");
+
+            System.out.println(permissionId);
+        }else{
+
+            outPut.setStatusCode("5001");
+            outPut.setMsg("参数传递有误！");
+
+        }
+        try {
+
+            String basePath = (String) req.getAttribute("basePath");
+            outPut.setUrl(basePath + "admin/role/index.html");
+            req.setAttribute("outPut", outPut);
+            req.getRequestDispatcher("/admin/alert.html").forward(req, rep);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

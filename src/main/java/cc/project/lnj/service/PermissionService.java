@@ -12,6 +12,8 @@ public interface PermissionService {
 
     public List<SysPermission> getPermissionByParentId(long parentId);
 
+    public List<SysPermission> getAvailablePermission(long parentId);
+
     public List<PermissionData> getPermissions();
 
     public List<Map<String, String>> getPermissionEnums();

@@ -139,4 +139,17 @@ public class PermissionServiceImpl implements PermissionService {
         }
         return 0;
     }
+
+    @Override
+    public List<SysPermission> getAvailablePermission(long parentId) {
+
+        List<SysPermission> list = null;
+        try {
+            list = permissionMapper.getAvailablePermission(parentId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 }

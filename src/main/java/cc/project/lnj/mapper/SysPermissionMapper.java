@@ -18,4 +18,6 @@ public interface SysPermissionMapper {
     int updateByPrimaryKey(SysPermission record);
 
     List<SysPermission> getPermissionByParentId(Long parentId);
+
+    List<SysPermission> getAvailablePermission(Long parentId);
 }

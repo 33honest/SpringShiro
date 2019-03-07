@@ -15,13 +15,13 @@
 			<i>Log In </i> or <span> Sign Up</span>
 		</div>
 		<div class="am-u-sm-10 login-am-center">
-			<form class="am-form">
+			<form action="${basePath}login.html" class="am-form" method="post">
 				<fieldset>
 					<div class="am-form-group">
-						<input type="email" class="" id="doc-ipt-email-1" placeholder="输入电子邮件">
+						<input type="text" class="" name="username" id="doc-ipt-email-1" placeholder="输入电子邮件">
 					</div>
 					<div class="am-form-group">
-						<input type="password" class="" id="doc-ipt-pwd-1" placeholder="设置个密码吧">
+						<input type="password" class="" name="password" id="doc-ipt-pwd-1" placeholder="设置个密码吧">
 					</div>
 					<p><button type="submit" class="am-btn am-btn-default">登录</button></p>
 				</fieldset>

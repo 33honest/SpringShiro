@@ -118,4 +118,16 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
+    @Override
+    public SysUser getUserByUserCode(String userCode) {
+
+        SysUser user = null;
+        try {
+            user = userMapper.getUserByUserCode(userCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

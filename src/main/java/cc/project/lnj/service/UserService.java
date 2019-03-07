@@ -17,4 +17,6 @@ public interface UserService {
 
     public SysUserExtends getUserAndRole(int id);
 
+    public SysUser getUserByUserCode(String userCode);
+
 }

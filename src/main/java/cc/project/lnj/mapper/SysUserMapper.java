@@ -23,4 +23,6 @@ public interface SysUserMapper {
     List<SysUserExtends> geUsertListInRole();
 
     SysUserExtends geUserAndRole(Integer id);
+
+    SysUser getUserByUserCode(String userCode);
 }

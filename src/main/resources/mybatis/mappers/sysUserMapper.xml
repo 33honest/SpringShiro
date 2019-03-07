@@ -128,5 +128,12 @@
         SELECT a.*,b.id AS "roleId" FROM `sys_user` a LEFT JOIN `sys_user_role` b ON a.id = b.sys_user_id WHERE a.`id` = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="getUserByUserCode" resultMap="UserRoleResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where usercode = #{userCode}
+    </select>
+
 
 </mapper>

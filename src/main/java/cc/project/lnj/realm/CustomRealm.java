@@ -59,6 +59,8 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        /*
         String userCode = (String) principals.getPrimaryPrincipal();
         List<String> permissions = new ArrayList<>();
         if (StringUtils.isNotBlank(userCode)) {
@@ -76,9 +78,8 @@ public class CustomRealm extends AuthorizingRealm {
                 roleService.getRoleById(sysUser.getId());
             }
         }
-
-        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.addStringPermissions(permissions);
+        */
 
         return simpleAuthorizationInfo;
     }

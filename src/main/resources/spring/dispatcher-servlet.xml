@@ -39,6 +39,10 @@
             <mvc:mapping path="/**"/>
             <bean class="cc.project.lnj.Interceptor.CommonInterceptor" />
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*.html"/>
+            <bean class="cc.project.lnj.Interceptor.UrlInterceptor" />
+        </mvc:interceptor>
     </mvc:interceptors>
 
 </beans>

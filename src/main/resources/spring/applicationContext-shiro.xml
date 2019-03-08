@@ -13,10 +13,6 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 
-    <bean id="urlPermissionsFilter" class="cc.project.lnj.filter.UrlPermissionsFilter"/>
-    <bean id="customerPermissionResolver" class="cc.project.lnj.realm.CustomerPermissionResolver" />
-
-
     <!-- web.xml中shiro的filter对应的bean -->
     <!-- Shiro 的Web过滤器 -->
     <bean id="shiroFilterFactoryBean" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -36,14 +32,7 @@
 
                 <!-- 请求 logout.action地址，shiro去清除session-->
                 /logout.action = logout
-                <!--商品查询需要商品查询权限 ，取消url拦截配置，使用注解授权方式 -->
-                <!-- /items/queryItems.action = perms[item:query]
-                /items/editItems.action = perms[item:edit] -->
-                <!-- 配置记住我或认证通过可以访问的地址 -->
-                /index.jsp  = user
-                /first.action = user
-                /welcome.jsp = user
-                <!-- /** = authc 所有url都必须认证通过才可以访问-->
+
                 /** = authc
                 <!-- /** = anon所有url都可以匿名访问 -->
 
@@ -68,7 +57,6 @@
     <bean id="customRealm" class="cc.project.lnj.realm.CustomRealm">
         <!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
-        <property name="permissionResolver" ref="customerPermissionResolver" />
     </bean>
 
     <!-- 凭证匹配器 -->

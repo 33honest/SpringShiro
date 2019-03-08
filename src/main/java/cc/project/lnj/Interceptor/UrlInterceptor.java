@@ -43,8 +43,8 @@ public class UrlInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         String uri = request.getRequestURI();
-        if(StringUtils.isNotBlank(uri)) {
-            uri = uri.replace(";","");
+        if(StringUtils.isNotBlank(uri) && uri.indexOf(";") > 0) {
+            uri = uri.substring(0, uri.indexOf(";"));
         }
 
         System.out.println("当前URI：" + uri);

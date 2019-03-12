@@ -40,7 +40,7 @@
             <bean class="cc.project.lnj.Interceptor.CommonInterceptor" />
         </mvc:interceptor>
         <mvc:interceptor>
-            <mvc:mapping path="/**/*.html"/>
+            <mvc:mapping path="/admin/**/*.html"/>
             <bean class="cc.project.lnj.Interceptor.UrlInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>

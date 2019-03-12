@@ -37,12 +37,11 @@ public class LoginController {
         return "redirect:/admin/index.html";
     }
 
-    @RequestMapping(value = "logout.html", method = RequestMethod.POST)
-    public String logout(HttpServletRequest req, HttpServletResponse rep, ModelMap model) {
+    @RequestMapping(value = "logout.html", method = RequestMethod.GET)
+    public void logout(HttpServletRequest req, HttpServletResponse rep, ModelMap model) {
 
         SecurityUtils.getSubject().logout();
 
-        return "admin/login";
     }
 
 

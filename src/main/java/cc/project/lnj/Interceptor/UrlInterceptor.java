@@ -36,7 +36,9 @@ public class UrlInterceptor implements HandlerInterceptor {
             "/logout.html",
             "/alert.html",
             "/index.html",
-            "/error.html"
+            "/main.html",
+            "/error.html",
+            "/ue/config.html"
     };
 
     @Override
@@ -48,7 +50,14 @@ public class UrlInterceptor implements HandlerInterceptor {
         }
 
         System.out.println("当前URI：" + uri);
+
+
         String userName = request.getRemoteUser();
+        System.out.println(userName);
+        if("root".equals(userName)) {
+            return true;
+        }
+
         List<String> permissions = new ArrayList<>();
         if (StringUtils.isNotBlank(userName)) {
             SysUser sysUser = userService.getUserByUserCode(userName);
@@ -77,6 +86,17 @@ public class UrlInterceptor implements HandlerInterceptor {
                 }
                 
             }
+
+            if(uri.startsWith("/permission/") || uri.startsWith("/role/")) {
+                for (int i = 0; i < permissions.size(); i++) {
+                    String s =  permissions.get(i);
+                    if(s.equals("/permission/") || s.equals("/role/")) {
+                        return true;
+                    }
+
+                }
+            }
+
             
             if (null != permissions && permissions.size() > 0) {
                 if (permissions.contains(uri)) {
@@ -101,8 +121,8 @@ public class UrlInterceptor implements HandlerInterceptor {
             return true;
         }
 
-
         return false;
+
     }
 
     @Override

@@ -31,7 +31,7 @@
                 /static/** = anon
 
                 <!-- 请求 logout.action地址，shiro去清除session-->
-                /logout.action = logout
+                /logout.html = logout
 
                 /** = authc
                 <!-- /** = anon所有url都可以匿名访问 -->

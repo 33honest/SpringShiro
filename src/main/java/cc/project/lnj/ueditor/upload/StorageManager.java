@@ -139,7 +139,7 @@ public class StorageManager {
 		return state;
 	}
 
-	private static State valid(File file) {
+	public static State valid(File file) {
 		File parentPath = file.getParentFile();
 
 		if ((!parentPath.exists()) && (!parentPath.mkdirs())) {

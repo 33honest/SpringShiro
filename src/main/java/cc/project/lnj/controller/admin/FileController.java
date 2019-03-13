@@ -1,6 +1,8 @@
 package cc.project.lnj.controller.admin;
 
+import cc.project.lnj.ueditor.PathFormat;
 import cc.project.lnj.ueditor.define.FileType;
+import cc.project.lnj.ueditor.upload.StorageManager;
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.codehaus.jackson.map.Serializers;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,11 +39,17 @@ public class FileController extends Serializers.Base {
                 while (iterator.hasNext()) {
                     MultipartFile file = multipartRequest.getFile(iterator.next().toString());
                     if(null != file) {
+                        String savePath = PathFormat.parse("/{yyyy}{mm}{dd}/{time}{rand:6}", file.getOriginalFilename());
                         String suffix = FileType.getSuffixByFilename(file.getOriginalFilename());
-                        String newName = System.currentTimeMillis() + suffix;
+                        String newName = savePath + suffix;
 
-                        String targetPath = "/upload/" + newName;
-                        System.out.println(targetPath);
+                        String targetPath = "/upload/images" + newName;
+
+                        String pathDir = targetPath.substring(0, targetPath.lastIndexOf("/"));
+                        File dirFile = new File(pathDir);
+                        if(!dirFile.exists()) {
+                            dirFile.mkdirs();
+                        }
                         file.transferTo(new File(targetPath));
                     }
 

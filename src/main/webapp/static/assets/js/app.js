@@ -45,10 +45,12 @@ function ajaxFileUpload() {
         fileElementId: "doc-form-file",
         dataType: "json",
         success:function (json) {
-            alert(json);
+            if(json.state) {
+                $("#imageUrl").val(json.targetPath);
+            }
         },
         error:function (data, status, e) {
-
+            alert(data);
         },
     });
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -18,6 +19,7 @@ import cc.project.lnj.ueditor.define.AppInfo;
 import cc.project.lnj.ueditor.define.BaseState;
 import cc.project.lnj.ueditor.define.FileType;
 import cc.project.lnj.ueditor.define.State;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 public class BinaryUploader {
 
@@ -31,7 +33,12 @@ public class BinaryUploader {
 			return new BaseState(false, AppInfo.NOT_MULTIPART_CONTENT);
 		}
 
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+		ShiroHttpServletRequest shiroRequest = (ShiroHttpServletRequest) request;
+		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+		MultipartHttpServletRequest multipartHttpServletRequest = commonsMultipartResolver.resolveMultipart((HttpServletRequest) shiroRequest.getRequest());
+
+
+		//MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 
 		ServletFileUpload upload = new ServletFileUpload(
 				new DiskFileItemFactory());

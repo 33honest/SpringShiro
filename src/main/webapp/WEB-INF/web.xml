@@ -53,7 +53,7 @@
     </filter>
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
 
 
@@ -69,7 +69,7 @@
 
     <servlet-mapping>
         <servlet-name>site</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <servlet>

@@ -9,7 +9,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/upload/image/**").addResourceLocations("file:D:/opt/upload/","/opt/upload/");
+        registry.addResourceHandler("/upload/image/**").addResourceLocations("file:D:/upload/images","/opt/upload/");
     }
 
 }

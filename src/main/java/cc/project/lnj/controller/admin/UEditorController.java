@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 @RequestMapping("admin/ue")
@@ -17,8 +16,9 @@ public class UEditorController extends BaseController {
     public void config(HttpServletRequest request, HttpServletResponse response) {
 
         response.setContentType("application/json");
-        String rootPath = request.getSession()
-                .getServletContext().getRealPath("/");
+        //String rootPath = request.getSession().getServletContext().getRealPath("/");
+        String rootPath = "/upload/images/";
+        System.out.println("rootPath:" + rootPath);
 
         try {
             String exec = new ActionEnter(request, rootPath, "", "").exec();
@@ -26,7 +26,7 @@ public class UEditorController extends BaseController {
             writer.write(exec);
             writer.flush();
             writer.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

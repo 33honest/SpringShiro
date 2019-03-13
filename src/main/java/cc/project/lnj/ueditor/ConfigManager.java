@@ -41,7 +41,7 @@ public final class ConfigManager {
      */
     private ConfigManager(String rootPath, String staticPath, String projectPath) throws IOException {
         this.rootPath = rootPath;
-        this.staticPath =staticPath;
+        this.staticPath = staticPath;
         this.projectPath = projectPath;
 
         this.initEnv();
@@ -50,15 +50,14 @@ public final class ConfigManager {
     /**
      * 配置管理器构造工厂
      *
-     *
-     * @param rootPath  服务器根路径
+     * @param rootPath    服务器根路径
      * @param staticPath  静态资料路径
      * @param projectPath 项目前缀路径
      * @return 配置管理器实例或者null
      */
     public static ConfigManager getInstance(String rootPath, String staticPath, String projectPath) {
         try {
-            return new ConfigManager(rootPath,staticPath,projectPath);
+            return new ConfigManager(rootPath, staticPath, projectPath);
         } catch (Exception e) {
             return null;
         }
@@ -149,7 +148,8 @@ public final class ConfigManager {
 
     private void initEnv() throws IOException {
 
-        String configContent = this.readFile(rootPath + "/" + configFileName);
+        String path = ConfigManager.class.getClassLoader().getResource(configFileName).getPath();
+        String configContent = this.readFile(path);
         System.out.println("configContent=" + configContent);
         try {
             JSONObject jsonConfig = new JSONObject(configContent);

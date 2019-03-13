@@ -10,6 +10,7 @@
     <context:annotation-config/>
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
+    <mvc:resources mapping="/upload/image/**" location="file:/upload/images/" />
 
     <context:component-scan base-package="cc.project.lnj.controller"/>
 

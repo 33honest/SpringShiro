@@ -24,7 +24,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 public class BinaryUploader {
 
 	public static final State save(HttpServletRequest request,
-			Map<String, Object> conf) {
+								   Map<String, Object> conf) {
 
 		MultipartFile fileStream = null;
 		boolean isAjaxUpload = request.getHeader( "X_Requested_With" ) != null;
@@ -43,9 +43,9 @@ public class BinaryUploader {
 		ServletFileUpload upload = new ServletFileUpload(
 				new DiskFileItemFactory());
 
-        if ( isAjaxUpload ) {
-            upload.setHeaderEncoding( "UTF-8" );
-        }
+		if ( isAjaxUpload ) {
+			upload.setHeaderEncoding( "UTF-8" );
+		}
 
 		try {
 			Map<String, MultipartFile>  iterator = multipartHttpServletRequest.getFileMap();

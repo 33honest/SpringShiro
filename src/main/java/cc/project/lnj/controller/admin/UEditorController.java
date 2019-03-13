@@ -18,7 +18,6 @@ public class UEditorController extends BaseController {
         response.setContentType("application/json");
         //String rootPath = request.getSession().getServletContext().getRealPath("/");
         String rootPath = "/upload/images/";
-        System.out.println("rootPath:" + rootPath);
 
         try {
             String exec = new ActionEnter(request, rootPath, "", "").exec();

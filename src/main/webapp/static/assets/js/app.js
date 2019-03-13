@@ -1,36 +1,58 @@
 $(function() {
 
-        var $fullText = $('.admin-fullText');
-        $('#admin-fullscreen').on('click', function() {
-            $.AMUI.fullscreen.toggle();
-        });
+    var $fullText = $('.admin-fullText');
+    $('#admin-fullscreen').on('click', function() {
+        $.AMUI.fullscreen.toggle();
+    });
 
-        $(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
-            $fullText.text($.AMUI.fullscreen.isFullscreen ? '退出全屏' : '开启全屏');
-        });
+    $(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+        $fullText.text($.AMUI.fullscreen.isFullscreen ? '退出全屏' : '开启全屏');
+    });
 
 
-        var dataType = $('body').attr('data-type');
-        for (key in pageData) {
-            if (key == dataType) {
-                pageData[key]();
-            }
+    var dataType = $('body').attr('data-type');
+    for (key in pageData) {
+        if (key == dataType) {
+            pageData[key]();
         }
+    }
 
-        $('.tpl-switch').find('.tpl-switch-btn-view').on('click', function() {
-            $(this).prev('.tpl-switch-btn').prop("checked", function() {
-                    if ($(this).is(':checked')) {
-                        $(this).attr("checked",false);
-                        return false
-                    } else {
-                        $(this).attr("checked",true);
-                        return true
-                    }
-                })
-                //console.log(event)
+    $('.tpl-switch').find('.tpl-switch-btn-view').on('click', function() {
+        $(this).prev('.tpl-switch-btn').prop("checked", function() {
+                if ($(this).is(':checked')) {
+                    $(this).attr("checked",false);
+                    return false
+                } else {
+                    $(this).attr("checked",true);
+                    return true
+                }
+            })
+            //console.log(event)
 
-        })
-    })
+    });
+
+    //图片上传
+    $(document).on("change", "#doc-form-file", function () {
+       ajaxFileUpload();
+    });
+
+});
+
+function ajaxFileUpload() {
+    $.ajaxFileUpload({
+        url:"/admin/upload/image",
+        secureuri: false,
+        fileElementId: "doc-form-file",
+        dataType: "json",
+        success:function (json) {
+            alert(json);
+        },
+        error:function (data, status, e) {
+
+        },
+    });
+}
+
     // ==========================
     // 侧边导航下拉列表
     // ==========================

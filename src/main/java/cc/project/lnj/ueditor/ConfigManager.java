@@ -150,7 +150,6 @@ public final class ConfigManager {
 
         String path = ConfigManager.class.getClassLoader().getResource(configFileName).getPath();
         String configContent = this.readFile(path);
-        System.out.println("configContent=" + configContent);
         try {
             JSONObject jsonConfig = new JSONObject(configContent);
             this.jsonConfig = jsonConfig;

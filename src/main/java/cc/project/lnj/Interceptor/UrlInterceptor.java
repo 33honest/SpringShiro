@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +49,8 @@ public class UrlInterceptor implements HandlerInterceptor {
         if(StringUtils.isNotBlank(uri) && uri.indexOf(";") > 0) {
             uri = uri.substring(0, uri.indexOf(";"));
         }
-
-        System.out.println("当前URI：" + uri);
-
-
         String userName = request.getRemoteUser();
-        System.out.println(userName);
+
         if("root".equals(userName)) {
             return true;
         }

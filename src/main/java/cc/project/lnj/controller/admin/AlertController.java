@@ -17,7 +17,6 @@ public class AlertController extends BaseController {
     public String alert(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 
         ApiOutPut apiOutPut = (ApiOutPut) request.getAttribute("outPut");
-        System.out.println(apiOutPut);
 
         model.put("result", apiOutPut);
         return "admin/alert";
